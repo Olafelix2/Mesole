@@ -14,30 +14,26 @@ class Stack:
         else:
             return None
 
-    def peek(self):
-        if not self.is_empty():
-            return self.items[-1]
-        else:
-            return None
-
-def binary_to_decimal(binary_str):
+def decimal_to_binary(decimal_num):
     stack = Stack()
-    decimal = 0
-    weight = 0
 
-    for bit in binary_str[::-1]:  # Process bits from right to left
-        if bit == '1':
-            decimal += 2**weight
-        weight += 1
+    while decimal_num > 0:
+        remainder = decimal_num % 2
+        stack.push(remainder)
+        decimal_num //= 2
 
-    return decimal
+    binary_str = ""
+    while not stack.is_empty():
+        binary_str += str(stack.pop())
+
+    return binary_str if binary_str else "0"
 
 def main():
-    binary_numbers = ["11000101", "10101010", "11111111", "10000000", "1111100000"]
+    decimal_numbers = [13, 42, 255, 128, 240]
 
-    for binary_num in binary_numbers:
-        decimal_num = binary_to_decimal(binary_num)
-        print(f"Binary: {binary_num} --> Decimal: {decimal_num}")
+    for decimal_num in decimal_numbers:
+        binary_num = decimal_to_binary(decimal_num)
+        print(f"Decimal: {decimal_num} --> Binary: {binary_num}")
 
 if __name__ == "__main__":
     main()
