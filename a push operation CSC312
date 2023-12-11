@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_STACK_SIZE 100
+
+typedef struct {
+    float data[MAX_STACK_SIZE];
+    int top;
+} Stack;
+
+Stack* createStack() {
+    Stack* stack = (Stack*) malloc(sizeof(Stack));
+    stack->top = -1;
+    return stack;
+}
+
+void push(Stack* stack, float value) {
+    if (stack->top == MAX_STACK_SIZE - 1) { // Stack overflow, can't push more elements
+        printf("Stack overflow\n");
+        return;
+    } else { // Stack not full, push the element at the top of the stack
+        stack->top++;
+        stack->data[stack->top] = value;
+        printf("%.2f pushed to stack\n", value);
+    }
+}
