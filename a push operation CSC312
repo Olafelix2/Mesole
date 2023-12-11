@@ -15,10 +15,10 @@ Stack* createStack() {
 }
 
 void push(Stack* stack, float value) {
-    if (stack->top == MAX_STACK_SIZE - 1) { // Stack overflow, can't push more elements
+    if (stack->top == MAX_STACK_SIZE - 1) { 
         printf("Stack overflow\n");
         return;
-    } else { // Stack not full, push the element at the top of the stack
+    } else { 
         stack->top++;
         stack->data[stack->top] = value;
         printf("%.2f pushed to stack\n", value);
